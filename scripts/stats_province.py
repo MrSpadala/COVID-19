@@ -65,7 +65,8 @@ for prov in provinces_input:
 	plt.plot(dates, positives, label=prov)
 	plt.legend()
 	step = 2
-	plt.xticks(dates[(len(dates)%step)-1::step])
+	offset = (len(dates)-1) % step
+	plt.xticks(dates[offset::step])
 	# horizontal line on the highest value if there are different provinces
 	if len(provinces_input) > 1:
 		plt.hlines(max(positives), 0, len(dates)-1, "darkred", "--", linewidth=1)
@@ -76,7 +77,8 @@ for prov in provinces_input:
 	plt.plot(dates, increments, label=prov)
 	plt.legend()
 	step = 2
-	plt.xticks(dates[(len(dates)%step)-1::step])
+	offset = (len(dates)-1) % step
+	plt.xticks(dates[offset::step])
 
 # Finally show the data
 plt.show()
