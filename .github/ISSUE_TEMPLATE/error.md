@@ -1,6 +1,6 @@
 ---
 name: Report an Error (ENG)
-about: Report and error or missing data or documentation. Use this template if you are an English speaker
+about: Report an error, missing data or documentation. Use this template if you are an English speaker
 ---
 
  <!--
@@ -20,6 +20,9 @@ Type of issue:
 - [ ] Incorrect or missing documentation <!-- file -->
 - [ ] Incorrect or missing data in the dashboard <!-- file -->
 - [ ] Layout problem in the dashboard <!-- file -->
+
+- Region:
+- Province: 
 
 ## Summary
 

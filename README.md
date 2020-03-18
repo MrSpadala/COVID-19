@@ -5,11 +5,21 @@
 [![GitHub license](https://img.shields.io/badge/License-Creative%20Commons%20Attribution%204.0%20International-blue)](https://github.com/pcm-dpc/COVID-19/blob/master/LICENSE)
 [![GitHub commit](https://img.shields.io/github/last-commit/pcm-dpc/COVID-19)](https://github.com/pcm-dpc/COVID-19/commits/master)
 
+## Wiki (in costruzione/under construction)
+
+[Wiki](https://github.com/pcm-dpc/COVID-19/wiki)<br>
+[Esempio di pagina](https://github.com/pcm-dpc/COVID-19/wiki/1.it-Dati:-andamento-nazionale)
+
 ## Avvisi
 
 ```diff
-- 10/03/2020: dati Regione Lombardia parziali.
+- 18/03/2020: dati Regione Campania non pervenuti.
+- 18/03/2020: dati Provincia di Parma non pervenuti.
+- 17/03/2020: dati Provincia di Rimini non aggiornati.
+- 16/03/2020: dati P.A. Trento e Puglia non pervenuti.
 - 11/03/2020: dati Regione Abruzzo non pervenuti.
+- 10/03/2020: dati Regione Lombardia parziali.
+- 07/03/2020: dati Brescia +300 esiti positivi
 ```
  
 
@@ -79,7 +89,7 @@ COVID-19/
 | **totale_ospedalizzati**        | Totale ospedalizzati              | Total hospitalised patients            | Numero                        | 3                   |
 | **isolamento_domiciliare**      | Persone in isolamento domiciliare | Home confinement                       | Numero                        | 3                   |
 | **totale_attualmente_positivi** | Totale attualmente positivi (ospedalizzati + isolamento domiciliare)      | Total amount of current positive cases (Hospitalised patients + Home confinement)  | Numero                        | 3                   |
-| **nuovi_attualmente_positivi**  | Nuovi attualmente positivi (ospedalizzati + isolamento domiciliare)       | News amount of current positive cases (Hospitalised patients + Home confinement)  | Numero                        | 3                   |
+| **nuovi_attualmente_positivi**  | Nuovi attualmente positivi (Totale attualmente positivi attuali - Totale attualmente positivi del giorno prima)       | News amount of current positive cases (Actual total amount of current positive cases - total amount of current positive cases of the previous day)  | Numero                        | 3                   |
 | **dimessi_guariti**             | Persone dimesse guarite           | Recovered                              | Numero                        | 3                   |
 | **deceduti**                    | Persone decedute                  | Death                                  | Numero                        | 3                   |
 | **totale_casi**                 | Totale casi positivi              | Total amount of positive cases         | Numero                        | 3                   |
