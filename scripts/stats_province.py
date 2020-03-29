@@ -59,14 +59,18 @@ for prov in provinces_input:
 	dates = [x["data"][5:10] for x in data_prov]
 
 
-	# Plot positive cases
+	# Now for the plots, we have too much datapoints to have all of them on the x-axis
+	# So we calculate how many ticks on x-axis we have to put
 	DATE_STEP = 4  #on x-axis plot only one date every DATE_STEP
+	offset = (len(dates)-1) % DATE_STEP  #offset of the x-axis ticks so that the last data point has its tick on x-axis
+	xticks = dates[offset::DATE_STEP]
+
+	# Plot positive cases
 	positives_plot = plt.figure(1)
 	plt.title("Casi Positivi")
 	plt.plot(dates, positives, label=prov)
+	plt.xticks(xticks)
 	plt.legend()
-	offset = (len(dates)-1) % DATE_STEP  #offset of the x-axis ticks so that the last data point has its tick on x-axis
-	plt.xticks(dates[offset::DATE_STEP])
 	# horizontal line on the highest value if there are different provinces
 	if len(provinces_input) > 1:
 		plt.hlines(max(positives), 0, len(dates)-1, "darkred", "--", linewidth=1)
@@ -75,9 +79,8 @@ for prov in provinces_input:
 	increments_plot = plt.figure(2)
 	plt.title("Incremento Giornaliero Positivi")
 	plt.plot(dates, increments, label=prov)
+	plt.xticks(xticks)
 	plt.legend()
-	offset = (len(dates)-1) % DATE_STEP
-	plt.xticks(dates[offset::DATE_STEP])
 
 # Finally show the data
 plt.show()
