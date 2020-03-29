@@ -55,18 +55,18 @@ for prov in provinces_input:
 	for i in range(1, len(positives)):
 	    increments.append(positives[i] - positives[i-1])
 
-	# Extract the dates (format MM-DD)
-	dates = [x["data"].split(" ")[0][5:] for x in data_prov]
+	# Transform dates from ISO format YYYY-MM-DDTHH:MM:SS to MM-DD
+	dates = [x["data"][5:10] for x in data_prov]
 
 
 	# Plot positive cases
+	DATE_STEP = 4  #on x-axis plot only one date every DATE_STEP
 	positives_plot = plt.figure(1)
 	plt.title("Casi Positivi")
 	plt.plot(dates, positives, label=prov)
 	plt.legend()
-	step = 2
-	offset = (len(dates)-1) % step
-	plt.xticks(dates[offset::step])
+	offset = (len(dates)-1) % DATE_STEP  #offset of the x-axis ticks so that the last data point has its tick on x-axis
+	plt.xticks(dates[offset::DATE_STEP])
 	# horizontal line on the highest value if there are different provinces
 	if len(provinces_input) > 1:
 		plt.hlines(max(positives), 0, len(dates)-1, "darkred", "--", linewidth=1)
@@ -76,9 +76,8 @@ for prov in provinces_input:
 	plt.title("Incremento Giornaliero Positivi")
 	plt.plot(dates, increments, label=prov)
 	plt.legend()
-	step = 2
-	offset = (len(dates)-1) % step
-	plt.xticks(dates[offset::step])
+	offset = (len(dates)-1) % DATE_STEP
+	plt.xticks(dates[offset::DATE_STEP])
 
 # Finally show the data
 plt.show()
