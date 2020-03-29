@@ -1,6 +1,7 @@
 
 import sys
 import json
+from math import ceil
 from pprint import pprint
 from matplotlib import pyplot as plt
 
@@ -61,9 +62,10 @@ for prov in provinces_input:
 
 	# Now for the plots, we have too much datapoints to have all of them on the x-axis
 	# So we calculate how many ticks on x-axis we have to put
-	DATE_STEP = 4  #on x-axis plot only one date every DATE_STEP
-	offset = (len(dates)-1) % DATE_STEP  #offset of the x-axis ticks so that the last data point has its tick on x-axis
-	xticks = dates[offset::DATE_STEP]
+	N_XTICKS = 9  #ticks on x-axis to plot
+	date_step = ceil(len(dates) / N_XTICKS)  #on x-axis plot only one date every date_step
+	offset = (len(dates)-1) % date_step  #offset of the x-axis ticks so that the last data point has its tick on x-axis
+	xticks = dates[offset::date_step]
 
 	# Plot positive cases
 	positives_plot = plt.figure(1)
