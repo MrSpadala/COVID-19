@@ -1,6 +1,6 @@
-﻿# Changelog
+# Changelog
 
-Tutte le modifiche al progetto, nuove funzionalitÃ  e informazioni sono documentate in questo file
+Tutte le modifiche al progetto, nuove funzionalità e informazioni sono documentate in questo file
 
 ## 2020-03-08
 
@@ -27,8 +27,9 @@ Tutte le modifiche al progetto, nuove funzionalitÃ  e informazioni sono docume
 - Aggiunti ultimi dati (latest) csv, nelle rispettive directory, per andamento nazionale (dpc-covid19-ita-andamento-nazionale-latest.csv), regioni (dpc-covid19-ita-regioni-latest.csv) e province (dpc-covid19-ita-province-latest.csv)
 - Aggiunti ultimi dati (latest) json, nella directory dati-json, per andamento nazionale (dpc-covid19-ita-andamento-nazionale-latest.json), regioni (dpc-covid19-ita-regioni-latest.json) e province (dpc-covid19-ita-province-latest.json)
 
-## Prossimi aggiornamenti
+## 2020-03-25
 
 - Data nel formato ISO8601 UTC
 - Aggiunta "Note" in "dati-regioni", "dati-province" e "dati-andamento-nazionale"
+- Aggiunta dataset "note"
 

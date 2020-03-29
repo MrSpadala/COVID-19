@@ -5,15 +5,45 @@
 [![GitHub license](https://img.shields.io/badge/License-Creative%20Commons%20Attribution%204.0%20International-blue)](https://github.com/pcm-dpc/COVID-19/blob/master/LICENSE)
 [![GitHub commit](https://img.shields.io/github/last-commit/pcm-dpc/COVID-19)](https://github.com/pcm-dpc/COVID-19/commits/master)
 
-## Aggiornamenti dataset
+## README e Wiki in aggiornamento (nuova versione - 01/04/2020 @ 08:00)
+## README and Wiki under update (new version - 01/04/2020 @ 08:00)
+
+## Stiamo lavorando per fornire nuovi dataset e dashboard e perfezionamento di quelli esistenti.
+## We are working to provide new datasets and dashboard and refinement of existing ones.
+
+## Aggiornamenti dataset 
+## Dataset update
+
+In note_it e note_en sarà riportato il codice del messaggio definito nel dataset "note"<br>
+In note_it and note_en will be reported the message code defined in "note" dataset
+
+* dati_regioni
+data,stato,codice_regione,denominazione_regione,lat,long,ricoverati_con_sintomi,terapia_intensiva,totale_ospedalizzati,isolamento_domiciliare,totale_attualmente_positivi,nuovi_attualmente_positivi,dimessi_guariti,deceduti,totale_casi,tamponi,note_it,note_en
+2020-03-24T17:00:00,ITA,13,Abruzzo,42.35122196,13.39843823,234,57,291,331,622,17,21,46,689,4294,,
+
+* dati_province
+data,stato,codice_regione,denominazione_regione,codice_provincia,denominazione_provincia,sigla_provincia,lat,long,totale_casi,note_it,note_en
+2020-03-24T17:00:00,ITA,13,Abruzzo,069,Chieti,CH,42.35103167,14.16754574,133,Adnp-IT-01,Adnp-EN-01
+
+* dati_andamento_nazionale
+data,stato,ricoverati_con_sintomi,terapia_intensiva,totale_ospedalizzati,isolamento_domiciliare,totale_attualmente_positivi,nuovi_attualmente_positivi,dimessi_guariti,deceduti,totale_casi,tamponi,note_it,note_en
+2020-03-24T17:00:00,ITA,21937,3396,25333,28697,54030,3612,8326,6820,69176,296964,Adnp-IT-01,Adnp-EN-01
+
+* note_it
+codice,data,dataset,stato,codice_regione,regione,codice_provincia,provincia,sigla_provincia,tipologia_avviso,avviso,note
+nd-IT-01,2020-03-24T17:00:00,ITA,13,Abruzzo,069,Chieti,CH,dati non pervenuti,mancata comunicazione dati,
+
+* note_en
+codice,data,dataset,stato,codice_regione,regione,codice_provincia,provincia,sigla_provincia,tipologia_avviso,avviso,note
+nd-EN-01,2020-03-24T17:00:00,ITA,13,Abruzzo,069,Chieti,CH,no data received,no data communication,
 
 ```diff
-Da sabato 21/03/2020 (aggiornamento 18:30)
+Da mercoledì 25/03/2020 (aggiornamento 18:30)
 1. ogni data sarà convertita nel formato standard ISO8601: *YYYY-MM-DDTHH:MM:SS* - *2020-03-18T19:14:29*. Tutte le date saranno in UTC.
 2. ad ogni dataset sarà aggiunto un campo note per dare informazioni sul dato specifico
 3. sarà realizzato un nuovo dataset per fornire informazioni sui dati
 
-From saturday 21/03/2020 (update 18:30)
+From Wednesday 25/03/2020 (update 18:30)
 1. every date will be converted in ISO8601 format standard: *YYYY-MM-DDTHH:MM:SS* - *2020-03-18T19:14:29*. All dates will be in UTC.
 2. a note field will be added to each dataset to give informations on the specific data
 3. a new dataset will be released to give informations on data
@@ -27,6 +57,8 @@ From saturday 21/03/2020 (update 18:30)
 ## Avvisi
 
 ```diff
+- 29/03/2020: dati Regione Emilia Romagna parziali (dato tampone non aggiornato).
+- 26/03/2020: dati Regione Piemonte parziali (-50 deceduti - comunicazione tardiva).
 - 18/03/2020: dati Regione Campania non pervenuti.
 - 18/03/2020: dati Provincia di Parma non pervenuti.
 - 17/03/2020: dati Provincia di Rimini non aggiornati.
