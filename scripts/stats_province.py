@@ -77,10 +77,14 @@ def main():
 		plt.legend()
 
 	# Finally show the data, or save it if it was passed --save argument
-	plt.show()
+	if not args.save:
+		plt.show()
+	else:
+		fname_ending = "_".join(provinces_input) + ".png"
+		plt.figure(1).savefig("tot_" + fname_ending, dpi=300)
+		plt.figure(2).savefig("inc_" + fname_ending, dpi=300)
 
 
-	#plt.savefig("MI_BG.png", dpi=300)
 
 
 
