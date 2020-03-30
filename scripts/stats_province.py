@@ -81,8 +81,8 @@ def main():
 		plt.show()
 	else:
 		fname_ending = "_".join(provinces_input) + ".png"
-		plt.figure(1).savefig("tot_" + fname_ending, dpi=300)
-		plt.figure(2).savefig("inc_" + fname_ending, dpi=300)
+		plt.figure(1).savefig("tot_" + fname_ending, dpi=150)
+		plt.figure(2).savefig("inc_" + fname_ending, dpi=150)
 
 
 
