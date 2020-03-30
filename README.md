@@ -1,6 +1,39 @@
+## In this fork
+
+Inside the `scripts/` folder I've added a script to plot the total cases and the daily increments shown province-wise.
+
+### Examples
+
+```
+$ cd scripts/
+$ python stats_province.py BG
+```
+<img src="https://github.com/MrSpadala/COVID-19/blob/master/scripts/generated/tot_BG.png" width=600 />
+<img src="https://github.com/MrSpadala/COVID-19/blob/master/scripts/generated/inc_BG.png" width=600 />
+
+
+```
+$ python stats_province BG MI RM
+```
+<img src="https://github.com/MrSpadala/COVID-19/blob/master/scripts/generated/tot_BG_MI_RM.png" width=600 />
+<img src="https://github.com/MrSpadala/COVID-19/blob/master/scripts/generated/inc_BG_MI_RM.png" width=600 />
+
+Requires Python>=3.6 with `matplotlib`
+
+### TODO
+ - Do the same plots but region-wise instead of province-wise. The code should be the same, only the filtering changes.
+ - Smooth increase rates, the raw data is very noisy, maybe using something from here https://en.wikipedia.org/wiki/Exponential_smoothing
+
+
 <img src="http://opendatadpc.maps.arcgis.com/sharing/rest/content/items/5c8ef7516b5b4bb19f61037b4cd69015/data" alt="COVID-19" data-canonical-src="http://opendatadpc.maps.arcgis.com/sharing/rest/content/items/5c8ef7516b5b4bb19f61037b4cd69015/data" width="400" />
 
-# Dati COVID-19 Italia
+---
+
+__ORIGINAL README FOLLOWING__
+
+---
+
+# Dati COVID-19 Italia (READ)
 
 [![GitHub license](https://img.shields.io/badge/License-Creative%20Commons%20Attribution%204.0%20International-blue)](https://github.com/pcm-dpc/COVID-19/blob/master/LICENSE)
 [![GitHub commit](https://img.shields.io/github/last-commit/pcm-dpc/COVID-19)](https://github.com/pcm-dpc/COVID-19/commits/master)
