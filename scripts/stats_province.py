@@ -102,6 +102,7 @@ def get_args():
 	args, province = parser.parse_known_args()
 	if len(province) == 0:
 		parser.error("Need at least one provincia")
+	province = list(map(str.upper, province))
 	return args, province
 
 
