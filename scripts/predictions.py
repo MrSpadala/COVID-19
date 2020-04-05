@@ -51,6 +51,15 @@ def get_increases(data):
     return res
 
 
+# Applies a constant second derivative dd to tot_cases, returns a list with its going
+def predict_tot_cases(tot_cases, d, dd):
+    res = list(tot_cases)
+    current_increase = d
+    while current_increase > 0:
+        res.append(res[-1] + current_increase)
+        current_increase += dd
+    return res
+
 
 def main():
     dataset = load_data()
@@ -62,13 +71,23 @@ def main():
     total_cases = get_total_cases(dataset)
     d_total_cases = get_increases(total_cases)
     dd_total_cases = get_increases(d_total_cases)
-    mean_dd_total_cases = np.mean(dd_total_cases[i1:i2])
-    stddev_dd_total_cases = np.std(dd_total_cases[i1:i2])
+    mean_dd_total_cases = np.mean(dd_total_cases[i1:i2])  #mean dd from peak date
+    stddev_dd_total_cases = np.std(dd_total_cases[i1:i2]) #std of dd from peak date
     print("Mean second derivative from peak date until now::", mean_dd_total_cases)
     print("Std. dev. second derivative from peak date until now:", stddev_dd_total_cases)
 
-    plt.plot(xticks, dd_total_cases)
+    pred = predict_tot_cases(
+        total_cases,
+        np.mean(d_total_cases[i1:i2]),
+        mean_dd_total_cases
+    )
+
+    plt.plot(pred, 'r--')
+    plt.plot(pred[:len(dataset)])
     plt.show()
+
+    #plt.plot(xticks, dd_total_cases)
+    #plt.show()
 
     """
     total_cases = get_total_cases(dataset)
