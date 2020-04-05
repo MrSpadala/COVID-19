@@ -1,5 +1,6 @@
 
 import json
+from math import ceil
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -44,11 +45,13 @@ def get_increases(data):
 def predict_tot_cases(tot_cases, d, dd):
     res = list(tot_cases)
     current_increase = d
-    while res[-1] + current_increase > 0:
+    while current_increase > 0:
         res.append(res[-1] + current_increase)
         current_increase += dd
     return res
 
+
+"""
 # Mean suqared error of two numpy vectors (with same length)
 def MSE(x1, x2):
     return np.sum((x1-x2)**2) / x1.shape[0]
@@ -69,6 +72,7 @@ def find_opt_offset(x_toshift, x_target):
         MSEs.append( MSE(x_target[i:i+WINDOW], x_tomatch) )
 
     plt.plot(MSEs, 'r^')
+    plt.title("MSE vs shift of recovered curve")
     plt.show()
 
 
@@ -90,7 +94,7 @@ def find_opt_offset_2(x1_toshift, x2_toshift, x_target):
 
     plt.plot(MSEs, 'r^')
     plt.show()
-
+"""
 
 
 
@@ -124,12 +128,21 @@ def main():
         mean_d_total_cases,
         mean_dd_total_cases
     )
-    fig, ax = plt.subplots()
-    ax.plot(pred, 'r--')
-    ax.plot(dates_mm_dd, pred[:len(dataset)])
-    plt.show()
-    plt.clf()
 
+    # Set xticks. TODO set a tick for days of the predicted curve
+    N_XTICKS = 5  #ticks on x-axis to plot
+    date_step = ceil(len(dates_mm_dd) / N_XTICKS)  #on x-axis plot only one date every date_step
+    offset = (len(dates_mm_dd)-1) % date_step  #offset of the x-axis ticks so that the last data point has its tick on x-axis
+    xticks = dates_mm_dd[offset::date_step]
+
+    plt.plot(pred, 'r--')
+    plt.plot(dates_mm_dd, pred[:len(dataset)])
+    plt.xticks(xticks)
+    plt.show()
+    #plt.savefig("peak_prediction.png", dpi=150)
+
+    """
+       # THIS ASSUMPTION DOESN'T WORK
     # We asume that the total cases curve is (nearly) a forward translation of deaths + recovered curves
     # In other words total_cases[t - offset] =~ deaths[t] + recovered[t]. We now find this offset
     find_opt_offset(deaths+recovered, total_cases)
@@ -139,6 +152,7 @@ def main():
     curve = deaths + recovered
     plt.plot(range(len(curve)-offset), curve[offset:])
     plt.show()
+    """
 
 
 if __name__ == "__main__":
