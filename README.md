@@ -1,8 +1,19 @@
 ## In this fork
 
-Inside the `scripts/` folder I've added a script to plot the total cases and the daily increments shown province-wise.
+Inside the `scripts/` folder I've added a script to plot the total cases and the daily increments shown province-wise and another one to (try to) predict the going of COVID-19 cases if the trend we are observing in the data remains constant.
 
-### Examples
+
+### Peak prediction
+
+_work in progress_
+
+To obtain the following prediction, we first calculated the mean second derivative from the date when the peak started (03-22) up to today, which is around -100, then, consider it constant, we applied it to the total cases. In other words cases slow down quadratically. 
+
+<img src="https://github.com/MrSpadala/COVID-19/blob/master/scripts/generated/peak_prediction.png" width=700 />
+
+The code to generate the following image is in `scripts/predictions.py`
+
+### Cases province
 
 ```
 $ cd scripts/
