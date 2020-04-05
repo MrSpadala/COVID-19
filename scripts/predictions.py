@@ -135,8 +135,9 @@ def main():
     offset = (len(dates_mm_dd)-1) % date_step  #offset of the x-axis ticks so that the last data point has its tick on x-axis
     xticks = dates_mm_dd[offset::date_step]
 
-    plt.plot(pred, 'r--')
-    plt.plot(dates_mm_dd, pred[:len(dataset)])
+    plt.plot(pred, 'r--', label="Prediction")
+    plt.plot(dates_mm_dd, pred[:len(dataset)], label="Available data")
+    plt.legend()
     plt.xticks(xticks)
     plt.show()
     #plt.savefig("peak_prediction.png", dpi=150)
