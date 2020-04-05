@@ -7,7 +7,9 @@ Inside the `scripts/` folder I've added a script to plot the total cases and the
 
 _work in progress_
 
-To obtain the following prediction, we first calculated the mean second derivative from the date when the peak started (03-22) up to today, which is around -100, then, consider it constant, we applied it to the total cases. In other words cases slow down quadratically. 
+To obtain the following prediction we consider a decrease following a constant second derivative. Using this simple model, new cases slow down quadratically. This has no scientific bases, it just seems the trend at the time of writing. In detail:
+ 1. We calculated the mean second derivative from the date when the peak started (03-22) up to today. This value is around -150.
+ 2. Apply the dynamics with this calculated second derivative considered as constant. 
 
 <img src="https://github.com/MrSpadala/COVID-19/blob/master/scripts/generated/peak_prediction.png" width=700 />
 
