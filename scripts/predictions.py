@@ -14,31 +14,20 @@ def load_data():
 def date_format(date_original):
     return date_original[5:10]
 
-# Return the dataset indexes corresponding to stop and start dates specified
-# dates must be in MM-DD format. The stop index is incremented by one.
-def filter_date(dataset, date_start=None, date_stop=None):
-    i_start = 0 if date_start == None else -1
-    i_stop = len(dataset)-1 if date_stop == None else -1
 
+# Returns the index of the dataset corresponding to the given date.
+# Date must be in MM-DD format
+def get_index_date(date, dataset):
     for i, v in enumerate(dataset):
-        date = date_format(v["data"])
-        if date == date_start:
-            i_start = i
-        if date == date_stop:
-            i_stop = i
-
-    if i_stop == -1 or i_start == -1:
-        raise Exception("One of the dates not found")
-
-    return i_start, i_stop+1
+        if date == date_format(v["data"]):
+            return i
+    raise Exception(f"Date {date} not found")
 
 
+# Returns a list having as values the key in the dataset for each element
+def extract_dataset_key(key, dataset):
+    return [x[key] for x in dataset]
 
-
-
-# Returns a list of the total cases given the dataset
-def get_total_cases(dataset):
-    return [x["totale_casi"] for x in dataset]
 
 # Given any list of values, returns a new list having increases as values
 # e.g.: if data = [3,8,16], it returns [3,5,8]
@@ -62,50 +51,41 @@ def predict_tot_cases(tot_cases, d, dd):
 
 
 def main():
+    # Load dataset
     dataset = load_data()
     PEAK_DATE = "03-22"  #so it seems from data
-    i1, i2 = filter_date(dataset, date_start=PEAK_DATE)
-    #i1, i2 = filter_date(dataset, date_stop="03-21")
-    xticks = [date_format(x["data"]) for x in dataset]
+    i_start = get_index_date(PEAK_DATE, dataset)
+    dates_mm_dd = [date_format(x["data"]) for x in dataset]
 
-    total_cases = get_total_cases(dataset)
+    # Extract data
+    total_cases = extract_dataset_key("totale_casi", dataset)
+    recovered = extract_dataset_key("dimessi_guariti", dataset)
+    deaths = extract_dataset_key("deceduti", dataset)
+
+    # Compute increases
     d_total_cases = get_increases(total_cases)
     dd_total_cases = get_increases(d_total_cases)
-    mean_dd_total_cases = np.mean(dd_total_cases[i1:i2])  #mean dd from peak date
-    stddev_dd_total_cases = np.std(dd_total_cases[i1:i2]) #std of dd from peak date
-    print("Mean second derivative from peak date until now::", mean_dd_total_cases)
+    D_WINDOW = 3
+    mean_d_total_cases = np.mean(d_total_cases[i_start:i_start+D_WINDOW])  #mean of increase of D_WINDOW days window from peak date
+    mean_dd_total_cases = np.mean(dd_total_cases[i_start:])  #mean dd from peak date
+    stddev_dd_total_cases = np.std(dd_total_cases[i_start:]) #std of dd from peak date
+    print(f"Mean derivative of {D_WINDOW} days from peak date:", mean_d_total_cases)
+    print("Mean second derivative from peak date until now:", mean_dd_total_cases)
     print("Std. dev. second derivative from peak date until now:", stddev_dd_total_cases)
 
     pred = predict_tot_cases(
         total_cases,
-        np.mean(d_total_cases[i1:i2]),
+        mean_d_total_cases,
         mean_dd_total_cases
     )
 
-    plt.plot(pred, 'r--')
-    plt.plot(pred[:len(dataset)])
+    fig, ax = plt.subplots()
+    ax.plot(pred, 'r--')
+    ax.plot(dates_mm_dd, pred[:len(dataset)])
     plt.show()
 
-    #plt.plot(xticks, dd_total_cases)
+    #plt.plot(dates_mm_dd, dd_total_cases)
     #plt.show()
-
-    """
-    total_cases = get_total_cases(dataset)
-    plt.plot(xticks[i1:i2], total_cases[i1:i2])
-    plt.title("Casi totali")
-    plt.show()
-
-    increases = get_increases(total_cases)
-    plt.plot(xticks[i1:i2], increases[i1:i2])
-    plt.title("Increases casi totali")
-    plt.show()
-
-    increases_2 = get_increases(increases)
-    print("Mean second derivative: ", np.mean(increases_2[i1:i2]))
-    plt.plot(xticks[i1:i2], increases_2[i1:i2])
-    plt.title("Increases of increases casi totali")
-    plt.show()
-    """
 
 
 
