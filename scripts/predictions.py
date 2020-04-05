@@ -10,15 +10,18 @@ def load_data():
     with open(DATA_FPATH, encoding="utf-8-sig") as f:
         return json.load(f)
 
-def transform_date(date_original):
-    return date_original[5:10]  #extract from date MM-DD
+# Given a date in ISO standard return it in format MM-DD
+def date_format(date_original):
+    return date_original[5:10]
 
+# Return the dataset indexes corresponding to stop and start dates specified
+# dates must be in MM-DD format. The stop index is incremented by one.
 def filter_date(dataset, date_start=None, date_stop=None):
     i_start = 0 if date_start == None else -1
     i_stop = len(dataset)-1 if date_stop == None else -1
 
     for i, v in enumerate(dataset):
-        date = transform_date(v["data"])
+        date = date_format(v["data"])
         if date == date_start:
             i_start = i
         if date == date_stop:
@@ -51,9 +54,23 @@ def get_increases(data):
 
 def main():
     dataset = load_data()
-    i1, i2 = filter_date(dataset, date_start="03-22")
-    xticks = [transform_date(x["data"]) for x in dataset]
+    PEAK_DATE = "03-22"  #so it seems from data
+    i1, i2 = filter_date(dataset, date_start=PEAK_DATE)
+    #i1, i2 = filter_date(dataset, date_stop="03-21")
+    xticks = [date_format(x["data"]) for x in dataset]
 
+    total_cases = get_total_cases(dataset)
+    d_total_cases = get_increases(total_cases)
+    dd_total_cases = get_increases(d_total_cases)
+    mean_dd_total_cases = np.mean(dd_total_cases[i1:i2])
+    stddev_dd_total_cases = np.std(dd_total_cases[i1:i2])
+    print("Mean second derivative from peak date until now::", mean_dd_total_cases)
+    print("Std. dev. second derivative from peak date until now:", stddev_dd_total_cases)
+
+    plt.plot(xticks, dd_total_cases)
+    plt.show()
+
+    """
     total_cases = get_total_cases(dataset)
     plt.plot(xticks[i1:i2], total_cases[i1:i2])
     plt.title("Casi totali")
@@ -69,6 +86,7 @@ def main():
     plt.plot(xticks[i1:i2], increases_2[i1:i2])
     plt.title("Increases of increases casi totali")
     plt.show()
+    """
 
 
 
