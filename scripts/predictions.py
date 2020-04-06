@@ -140,7 +140,7 @@ def main():
     plt.legend()
     plt.xticks(xticks)
     plt.show()
-    #plt.savefig("peak_prediction.png", dpi=150)
+    #plt.savefig("generated/peak_prediction.png", dpi=150)
 
     """
        # THIS ASSUMPTION DOESN'T WORK
