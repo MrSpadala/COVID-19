@@ -114,7 +114,7 @@ def main():
     # Compute increases
     d_total_cases = get_increases(total_cases)
     dd_total_cases = get_increases(d_total_cases)
-    D_WINDOW = 10
+    D_WINDOW = 4
     mean_d_total_cases = np.mean(d_total_cases[i_start:i_start+D_WINDOW])  #mean of increase of D_WINDOW days window from peak date
     mean_dd_total_cases = np.mean(dd_total_cases[i_start:])  #mean dd from peak date
     stddev_dd_total_cases = np.std(dd_total_cases[i_start:]) #std of dd from peak date
